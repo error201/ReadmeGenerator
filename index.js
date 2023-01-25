@@ -41,7 +41,7 @@ inquirer.prompt([
         name: 'licenseType',
         choices: ["None", "MIT", "GNU GPLv3", "GNU AGPLv3", "GNU LGPLv3", "Apache 2.0", "ISC", "Mozilla Public License 2.0", "Boost SW License 1.0",
             "The Unilicense", "CC0-1.0", "CC-BY-4.0", "CC-BY-SA-4.0", "SIL Open Font License 1.1", "CERN-OHL-P-2.0", "CERN-OHL-W-2.0", "CERN-OHL-S-2.0"],
-        default: ["MIT"],
+        default: "MIT",
     },
     {
         type: 'input',
@@ -74,7 +74,11 @@ const writeReadme = function (title,
     license,
     email,
     github) {
-    var badgeLink = `![license](https://img.shields.io/static/v1?label=License&message=${license}&color=success)`
+    if (license === "None") {
+        var badgeLink = ""
+    } else {
+        var badgeLink = `![license](https://img.shields.io/static/v1?label=License&message=${license}&color=success)`
+    }
     var readmeText = `# **${title}**
 
 ${badgeLink}
@@ -113,13 +117,13 @@ ${test}
 
 ## Questions
 
-- My GitHub profile: [GitHub Profile](https://github/${github})
-- Please email me at [here](${email}) for any further questions.`
-        fs.writeFile('./assets/README.md', readmeText, 'utf8',(err) =>{
-            if (err){
-                console.log('err');
-            } else {
-                console.log('File written!');
-            }
-        })
+- My GitHub profile: [GitHub Profile](https://github.com/${github})
+- Please email me at ${email} for any further questions.`
+    fs.writeFile('./assets/README.md', readmeText, 'utf8', (err) => {
+        if (err) {
+            console.log('err');
+        } else {
+            console.log('File written!');
+        }
+    })
 }
