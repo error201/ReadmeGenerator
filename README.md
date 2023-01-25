@@ -25,6 +25,7 @@ to install the required Node.js packages.
 ## Usage
 
 Following the on-screen prompts, enter the requested information. After all the information has been gathered, the generated README.md file will be found in the ./assets folder.
+A screencast of usage can be found [here](https://drive.google.com/file/d/12dvtVWu0TeU3zVU4PxZDATVLwEgXDqwP/view).
 
 ## License
 
